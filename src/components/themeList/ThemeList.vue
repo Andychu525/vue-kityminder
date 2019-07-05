@@ -1,18 +1,16 @@
-
-
 <template>
   <div class="temp-panel">
     <a-popover placement="topLeft" trigger="click">
       <template slot="content">
         <div class="theme-container">
           <a
-            v-for="(title,theme) in themeObjectList"
+            v-for="(title, theme) in themeObjectList"
             :key="theme"
             :style="getThemeThumbStyle(theme)"
             :title="title"
-            @click="minder.execCommand('theme', theme);"
+            @click="minder.execCommand('theme', theme)"
             class="theme-item"
-          >{{title}}</a>
+          >{{ title }}</a>
         </div>
       </template>
       <div class="current-temp-item" :disabled="minder.queryCommandState('template') === -1">
@@ -36,12 +34,12 @@ export default class AppendNode extends Vue {
 
   get themeObjectList() {
     return {
-      'classic': '脑图经典',
+      classic: '脑图经典',
       'classic-compact': '紧凑经典',
-      'snow': '温柔冷光',
+      snow: '温柔冷光',
       'snow-compact': '紧凑冷光',
-      'fish': '鱼骨图',
-      'wire': '线框',
+      fish: '鱼骨图',
+      wire: '线框',
       'fresh-red': '清新红',
       'fresh-soil': '泥土黄',
       'fresh-green': '文艺绿',
@@ -54,7 +52,7 @@ export default class AppendNode extends Vue {
       'fresh-blue-compat': '紧凑蓝',
       'fresh-purple-compat': '紧凑紫',
       'fresh-pink-compat': '紧凑粉',
-      'tianpan': '经典天盘',
+      tianpan: '经典天盘',
       'tianpan-compact': '紧凑天盘'
     }
   }
@@ -71,7 +69,7 @@ export default class AppendNode extends Vue {
       return
     }
     const style: any = {
-      'color': themeObj['root-color'],
+      color: themeObj['root-color'],
       'border-radius': (themeObj['root-radius'] / 2).toString() + 'px'
     }
 
@@ -84,7 +82,6 @@ export default class AppendNode extends Vue {
   }
 }
 </script>
-
 
 <style lang="less" scoped>
 .theme-container {

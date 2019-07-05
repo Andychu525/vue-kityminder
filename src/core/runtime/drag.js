@@ -6,144 +6,146 @@
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-import $_____hotbox from '../hotbox'
-import $_____tool_debug from '../tool/debug'
+import $_____hotbox from "../hotbox";
+import $_____tool_debug from "../tool/debug";
 
-var Hotbox = $_____hotbox
-var Debug = $_____tool_debug
-var debug = new Debug('drag')
+var Hotbox = $_____hotbox;
+var Debug = $_____tool_debug;
+var debug = new Debug("drag");
 
 function DragRuntime() {
-  var fsm = this.fsm
-  var minder = this.minder
-  var hotbox = this.hotbox
-  var receiver = this.receiver
-  var receiverElement = receiver.element
+  var fsm = this.fsm;
+  var minder = this.minder;
+  var hotbox = this.hotbox;
+  var receiver = this.receiver;
+  var receiverElement = receiver.element;
 
   // setup everything to go
-  setupFsm()
+  setupFsm();
 
   // listen the fsm changes, make action.
   function setupFsm() {
     // when jumped to drag mode, enter
-    fsm.when('* -> drag', function() {
+    fsm.when("* -> drag", function() {
       // now is drag mode
-    })
+    });
 
-    fsm.when('drag -> *', function(exit, enter, reason) {
-      if (reason == 'drag-finish') {
+    fsm.when("drag -> *", function(exit, enter, reason) {
+      if (reason == "drag-finish") {
         // now exit drag mode
       }
-    })
+    });
   }
 
-  var downX, downY
-  var MOUSE_HAS_DOWN = 0
-  var MOUSE_HAS_UP = 1
-  var BOUND_CHECK = 20
-  var flag = MOUSE_HAS_UP
-  var maxX, maxY, osx, osy, containerY
+  var downX, downY;
+  var MOUSE_HAS_DOWN = 0;
+  var MOUSE_HAS_UP = 1;
+  var BOUND_CHECK = 20;
+  var flag = MOUSE_HAS_UP;
+  var maxX, maxY, osx, osy, containerY;
   var freeHorizen = false,
-    freeVirtical = false
-  var frame
+    freeVirtical = false;
+  var frame;
 
   function move(direction, speed) {
     if (!direction) {
-      freeHorizen = freeVirtical = false
-      frame && kity.releaseFrame(frame)
-      frame = null
-      return
+      freeHorizen = freeVirtical = false;
+      frame && kity.releaseFrame(frame);
+      frame = null;
+      return;
     }
     if (!frame) {
       frame = kity.requestFrame(
         (function(direction, speed, minder) {
           return function(frame) {
             switch (direction) {
-              case 'left':
-                minder._viewDragger.move({ x: -speed, y: 0 }, 0)
-                break
-              case 'top':
-                minder._viewDragger.move({ x: 0, y: -speed }, 0)
-                break
-              case 'right':
-                minder._viewDragger.move({ x: speed, y: 0 }, 0)
-                break
-              case 'bottom':
-                minder._viewDragger.move({ x: 0, y: speed }, 0)
-                break
+              case "left":
+                minder._viewDragger.move({ x: -speed, y: 0 }, 0);
+                break;
+              case "top":
+                minder._viewDragger.move({ x: 0, y: -speed }, 0);
+                break;
+              case "right":
+                minder._viewDragger.move({ x: speed, y: 0 }, 0);
+                break;
+              case "bottom":
+                minder._viewDragger.move({ x: 0, y: speed }, 0);
+                break;
               default:
-                return
+                return;
             }
-            frame.next()
-          }
+            frame.next();
+          };
         })(direction, speed, minder)
-      )
+      );
     }
   }
 
-  minder.on('mousedown', function(e) {
-    flag = MOUSE_HAS_DOWN
-    var rect = minder.getPaper().container.getBoundingClientRect()
-    downX = e.originEvent.clientX
-    downY = e.originEvent.clientY
-    containerY = rect.top
-    maxX = rect.width
-    maxY = rect.height
-  })
+  minder.on("mousedown", function(e) {
+    flag = MOUSE_HAS_DOWN;
+    var rect = minder.getPaper().container.getBoundingClientRect();
+    downX = e.originEvent.clientX;
+    downY = e.originEvent.clientY;
+    containerY = rect.top;
+    maxX = rect.width;
+    maxY = rect.height;
+  });
 
-  minder.on('mousemove', function(e) {
+  minder.on("mousemove", function(e) {
     if (
-      fsm.state() === 'drag' &&
+      fsm.state() === "drag" &&
       flag == MOUSE_HAS_DOWN &&
       minder.getSelectedNode() &&
-      (Math.abs(downX - e.originEvent.clientX) > BOUND_CHECK || Math.abs(downY - e.originEvent.clientY) > BOUND_CHECK)
+      (Math.abs(downX - e.originEvent.clientX) > BOUND_CHECK ||
+        Math.abs(downY - e.originEvent.clientY) > BOUND_CHECK)
     ) {
-      osx = e.originEvent.clientX
-      osy = e.originEvent.clientY - containerY
+      osx = e.originEvent.clientX;
+      osy = e.originEvent.clientY - containerY;
 
       if (osx < BOUND_CHECK) {
-        move('right', BOUND_CHECK - osx)
+        move("right", BOUND_CHECK - osx);
       } else if (osx > maxX - BOUND_CHECK) {
-        move('left', BOUND_CHECK + osx - maxX)
+        move("left", BOUND_CHECK + osx - maxX);
       } else {
-        freeHorizen = true
+        freeHorizen = true;
       }
       if (osy < BOUND_CHECK) {
-        move('bottom', osy)
+        move("bottom", osy);
       } else if (osy > maxY - BOUND_CHECK) {
-        move('top', BOUND_CHECK + osy - maxY)
+        move("top", BOUND_CHECK + osy - maxY);
       } else {
-        freeVirtical = true
+        freeVirtical = true;
       }
       if (freeHorizen && freeVirtical) {
-        move(false)
+        move(false);
       }
     }
     if (
-      fsm.state() !== 'drag' &&
+      fsm.state() !== "drag" &&
       flag === MOUSE_HAS_DOWN &&
       minder.getSelectedNode() &&
-      (Math.abs(downX - e.originEvent.clientX) > BOUND_CHECK || Math.abs(downY - e.originEvent.clientY) > BOUND_CHECK)
+      (Math.abs(downX - e.originEvent.clientX) > BOUND_CHECK ||
+        Math.abs(downY - e.originEvent.clientY) > BOUND_CHECK)
     ) {
-      if (fsm.state() === 'hotbox') {
-        hotbox.active(Hotbox.STATE_IDLE)
+      if (fsm.state() === "hotbox") {
+        hotbox.active(Hotbox.STATE_IDLE);
       }
 
-      return fsm.jump('drag', 'user-drag')
+      return fsm.jump("drag", "user-drag");
     }
-  })
+  });
 
   window.addEventListener(
-    'mouseup',
+    "mouseup",
     function() {
-      flag = MOUSE_HAS_UP
-      if (fsm.state() === 'drag') {
-        move(false)
-        return fsm.jump('normal', 'drag-finish')
+      flag = MOUSE_HAS_UP;
+      if (fsm.state() === "drag") {
+        move(false);
+        return fsm.jump("normal", "drag-finish");
       }
     },
     false
-  )
+  );
 }
 
-export default DragRuntime
+export default DragRuntime;

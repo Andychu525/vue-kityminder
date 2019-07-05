@@ -1,7 +1,7 @@
 <template>
   <div class="resource-editor">
     <div class="input-group">
-      <input class="form-control" type="text" v-model="newResourceName" :disabled="!enabled">
+      <input class="form-control" type="text" v-model="newResourceName" :disabled="!enabled" />
       <span class="input-group-btn">
         <button class="btn btn-default" :disabled="!enabled">添加</button>
       </span>
@@ -23,10 +23,9 @@
       >
         <span class="caret"></span>
       </div>
-    </div> -->
+    </div>-->
   </div>
 </template>
-
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'

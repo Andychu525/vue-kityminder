@@ -4,7 +4,10 @@
       v-for="p in numList"
       :key="p"
       class="km-priority-item tool-group-item"
-      @click="minder.queryCommandState('priority') === -1 || minder.execCommand('priority', p)"
+      @click="
+        minder.queryCommandState('priority') === -1 ||
+          minder.execCommand('priority', p)
+      "
       ng-class="{ active: commandValue == p }"
       :title="getPriorityTitle(p)"
     >

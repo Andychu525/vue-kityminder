@@ -6,25 +6,24 @@
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-import $_____minder from '../minder';
-    var Minder = $_____minder;
+import $_____minder from "../minder";
+var Minder = $_____minder;
 
-    function MinderRuntime() {
+function MinderRuntime() {
+  // 不使用 kityminder 的按键处理，由 ReceiverRuntime 统一处理
+  var minder = new Minder({
+    enableKeyReceiver: false,
+    enableAnimation: true
+  });
 
-        // 不使用 kityminder 的按键处理，由 ReceiverRuntime 统一处理
-        var minder = new Minder({
-            enableKeyReceiver: false,
-            enableAnimation: true
-        });
+  // 渲染，初始化
+  minder.renderTo(this.selector);
+  minder.setTheme(null);
+  minder.select(minder.getRoot(), true);
+  minder.execCommand("text", "中心主题");
 
-        // 渲染，初始化
-        minder.renderTo(this.selector);
-        minder.setTheme(null);
-        minder.select(minder.getRoot(), true);
-        minder.execCommand('text', '中心主题');
+  // 导出给其它 Runtime 使用
+  this.minder = minder;
+}
 
-        // 导出给其它 Runtime 使用
-        this.minder = minder;
-    }
-
-    export default  MinderRuntime;
+export default MinderRuntime;

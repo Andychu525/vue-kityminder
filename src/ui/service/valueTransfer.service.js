@@ -1,4 +1,3 @@
-angular.module('kityminderEditor')
-    .service('valueTransfer', function() {
-        return {};
-    });
+angular.module("kityminderEditor").service("valueTransfer", function() {
+  return {};
+});

@@ -3,7 +3,10 @@
     <div
       class="km-btn-item arrange-up"
       :disabled="minder.queryCommandState('ArrangeUp') === -1"
-      @click="minder.queryCommandState('ArrangeUp') === -1 || minder.execCommand('ArrangeUp')"
+      @click="
+        minder.queryCommandState('ArrangeUp') === -1 ||
+          minder.execCommand('ArrangeUp')
+      "
       title="上移"
     >
       <i class="km-btn-icon"></i>
@@ -12,7 +15,10 @@
     <div
       class="km-btn-item arrange-down"
       :disabled="minder.queryCommandState('ArrangeDown') === -1"
-      @click="minder.queryCommandState('ArrangeDown') === -1 || minder.execCommand('ArrangeDown');"
+      @click="
+        minder.queryCommandState('ArrangeDown') === -1 ||
+          minder.execCommand('ArrangeDown')
+      "
       title="下移"
     >
       <i class="km-btn-icon"></i>
@@ -20,7 +26,6 @@
     </div>
   </div>
 </template>
-
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'

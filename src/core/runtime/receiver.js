@@ -141,4 +141,4 @@ function ReceiverRuntime() {
   this.receiver = receiver
 }
 
-export default ( ReceiverRuntime)
+export default ReceiverRuntime

@@ -8,15 +8,17 @@
     >
       <a-select-option
         class="font-item-wrap font-list"
-        v-for="(f,index) in fontFamilyList"
+        v-for="(f, index) in fontFamilyList"
         :value="f.val"
         :key="index"
       >
         <a
           @click="minder.execCommand('fontfamily', f.val)"
           class="font-item"
-          :class="{ 'font-item-selected' : f == minder.queryCommandValue('fontfamily') }"
-          :style="{'font-family': f.val }"
+          :class="{
+            'font-item-selected': f == minder.queryCommandValue('fontfamily')
+          }"
+          :style="{ 'font-family': f.val }"
         >{{ f.name }}</a>
       </a-select-option>
     </a-select>
@@ -28,34 +30,46 @@
     >
       <a-select-option
         class="font-item-wrap font-list"
-        v-for="(f,index) in fontSizeList"
+        v-for="(f, index) in fontSizeList"
         :value="f"
         :key="index"
       >
         <a
           @click="minder.execCommand('fontsize', f)"
           class="font-item"
-          :class="{ 'font-item-selected' : f == minder.queryCommandValue('fontsize') }"
-          :style="{'font-size': f + 'px'}"
+          :class="{
+            'font-item-selected': f == minder.queryCommandValue('fontsize')
+          }"
+          :style="{ 'font-size': f + 'px' }"
         >{{ f }}</a>
       </a-select-option>
     </a-select>
     <span
       class="s-btn-icon font-bold"
-      @click="minder.queryCommandState('bold') === -1 || minder.execCommand('bold')"
-      :class="{'font-bold-selected' : minder.queryCommandState('bold') == 1}"
+      @click="
+        minder.queryCommandState('bold') === -1 || minder.execCommand('bold')
+      "
+      :class="{ 'font-bold-selected': minder.queryCommandState('bold') == 1 }"
       :disabled="minder.queryCommandState('bold') === -1"
     ></span>
     <span
       class="s-btn-icon font-italics"
-      @click="minder.queryCommandState('italic') === -1 || minder.execCommand('italic')"
-      :class="{'font-italics-selected' : minder.queryCommandState('italic') == 1}"
+      @click="
+        minder.queryCommandState('italic') === -1 ||
+          minder.execCommand('italic')
+      "
+      :class="{
+        'font-italics-selected': minder.queryCommandState('italic') == 1
+      }"
       :disabled="minder.queryCommandState('italic') === -1"
     ></span>
     <div class="font-color-wrap">
       <span
         class="quick-font-color"
-        @click="minder.queryCommandState('forecolor') === -1 || minder.execCommand('forecolor', foreColor)"
+        @click="
+          minder.queryCommandState('forecolor') === -1 ||
+            minder.execCommand('forecolor', foreColor)
+        "
         :disabled="minder.queryCommandState('forecolor') === -1"
       >A</span>
       <span
@@ -69,7 +83,10 @@
       <span
         class="font-color-preview"
         :style="{ 'background-color': foreColor }"
-        @click="minder.queryCommandState('forecolor') === -1 || minder.execCommand('forecolor', foreColor)"
+        @click="
+          minder.queryCommandState('forecolor') === -1 ||
+            minder.execCommand('forecolor', foreColor)
+        "
         :disabled="minder.queryCommandState('forecolor') === -1"
       ></span>
     </div>

@@ -1,20 +1,18 @@
-angular.module('kityminderEditor')
-    .service('minder.service',  function() {
+angular.module("kityminderEditor").service("minder.service", function() {
+  var callbackQueue = [];
 
-        var callbackQueue = [];
+  function registerEvent(callback) {
+    callbackQueue.push(callback);
+  }
 
-        function registerEvent(callback) {
-            callbackQueue.push(callback);
-        }
-
-        function executeCallback() {
-            callbackQueue.forEach(function(ele) {
-                ele.apply(this, arguments);
-            })
-        }
-
-        return {
-            registerEvent: registerEvent,
-            executeCallback: executeCallback
-        }
+  function executeCallback() {
+    callbackQueue.forEach(function(ele) {
+      ele.apply(this, arguments);
     });
+  }
+
+  return {
+    registerEvent: registerEvent,
+    executeCallback: executeCallback
+  };
+});

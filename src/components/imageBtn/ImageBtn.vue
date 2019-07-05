@@ -30,7 +30,6 @@
   </div>
 </template>
 
-
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
@@ -39,4 +38,3 @@ export default class ImageBtn extends Vue {
   @Prop({ required: true, type: Object }) minder: any
 }
 </script>
-    

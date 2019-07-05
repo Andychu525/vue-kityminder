@@ -16,15 +16,14 @@
 
       <a-menu slot="overlay">
         <a-menu-item
-          v-for="(level,index) in levels"
+          v-for="(level, index) in levels"
           :key="index"
           @click="minder.execCommand('ExpandToLevel', level)"
-        >{{level}}</a-menu-item>
+        >{{ level }}</a-menu-item>
       </a-menu>
     </a-dropdown>
   </div>
 </template>
-
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'

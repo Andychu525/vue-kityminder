@@ -20,7 +20,11 @@
         <span class="sr-only"></span>
       </button>
       <a-menu slot="overlay">
-        <a-menu-item v-for="(item,index) in items" :key="index">{{item}}</a-menu-item>
+        <a-menu-item v-for="(item, index) in items" :key="index">
+          {{
+          item
+          }}
+        </a-menu-item>
       </a-menu>
     </a-dropdown>
   </div>

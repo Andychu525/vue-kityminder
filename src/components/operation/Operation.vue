@@ -12,7 +12,10 @@
     <div
       class="km-btn-item remove-node"
       :disabled="minder.queryCommandState('RemoveNode') === -1"
-      @click="minder.queryCommandState('RemoveNode') === -1 || minder.execCommand('RemoveNode');"
+      @click="
+        minder.queryCommandState('RemoveNode') === -1 ||
+          minder.execCommand('RemoveNode')
+      "
       title="删除"
     >
       <i class="km-btn-icon"></i>
@@ -20,8 +23,6 @@
     </div>
   </div>
 </template>
-
-
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'

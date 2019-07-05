@@ -4,7 +4,7 @@
       <template slot="content">
         <div class="theme-container">
           <a
-            v-for="(_,key) in templateList"
+            v-for="(_, key) in templateList"
             :class="getTemplateItemClass(key)"
             :key="key"
             :title="templateTitle[key]"
@@ -19,7 +19,6 @@
   </div>
 </template>
 
-
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
@@ -28,11 +27,11 @@ export default class TemplateList extends Vue {
   @Prop({ required: true, type: Object }) minder: any
 
   templateTitle = {
-    'default': '思维导图',
-    'tianpan': '天盘图(适合少量)',
-    'structure': '组织结构图',
-    'filetree': '目录组织图',
-    'right': '逻辑结构图',
+    default: '思维导图',
+    tianpan: '天盘图(适合少量)',
+    structure: '组织结构图',
+    filetree: '目录组织图',
+    right: '逻辑结构图',
     'fish-bone': '鱼骨头图'
   }
 

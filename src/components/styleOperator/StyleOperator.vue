@@ -1,7 +1,10 @@
 <template>
   <div class="style-operator">
     <a
-      @click="minder.queryCommandState('clearstyle') === -1 || minder.execCommand('clearstyle')"
+      @click="
+        minder.queryCommandState('clearstyle') === -1 ||
+          minder.execCommand('clearstyle')
+      "
       class="btn-wrap clear-style"
       :disabled="minder.queryCommandState('clearstyle') === -1"
     >
@@ -12,7 +15,10 @@
       <a
         class="s-btn-wrap"
         href
-        @click="minder.queryCommandState('copystyle') === -1 || minder.execCommand('copystyle')"
+        @click="
+          minder.queryCommandState('copystyle') === -1 ||
+            minder.execCommand('copystyle')
+        "
         :disabled="minder.queryCommandState('copystyle') === -1"
       >
         <span class="s-btn-icon copy-style-icon"></span>
@@ -22,7 +28,10 @@
       <a
         class="s-btn-wrap paste-style-wrap"
         href
-        @click="minder.queryCommandState('pastestyle') === -1 || minder.execCommand('pastestyle')"
+        @click="
+          minder.queryCommandState('pastestyle') === -1 ||
+            minder.execCommand('pastestyle')
+        "
         :disabled="minder.queryCommandState('pastestyle') === -1"
       >
         <span class="s-btn-icon paste-style-icon"></span>
@@ -39,4 +48,3 @@ export default class StyleOperator extends Vue {
   @Prop({ required: true, type: Object }) minder: any
 }
 </script>
-

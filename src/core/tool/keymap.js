@@ -48,32 +48,32 @@ var keymap = {
   F11: 122,
   F12: 123,
 
-  '`': 192,
-  '=': 187,
-  '-': 189,
+  "`": 192,
+  "=": 187,
+  "-": 189,
 
-  '/': 191,
-  '.': 190
-}
+  "/": 191,
+  ".": 190
+};
 
 // 小写适配
 for (var key in keymap) {
   if (keymap.hasOwnProperty(key)) {
-    keymap[key.toLowerCase()] = keymap[key]
+    keymap[key.toLowerCase()] = keymap[key];
   }
 }
-var aKeyCode = 65
-var aCharCode = 'a'.charCodeAt(0)
+var aKeyCode = 65;
+var aCharCode = "a".charCodeAt(0);
 
 // letters
-'abcdefghijklmnopqrstuvwxyz'.split('').forEach(function(letter) {
-  keymap[letter] = aKeyCode + (letter.charCodeAt(0) - aCharCode)
-})
+"abcdefghijklmnopqrstuvwxyz".split("").forEach(function(letter) {
+  keymap[letter] = aKeyCode + (letter.charCodeAt(0) - aCharCode);
+});
 
 // numbers
-var n = 9
+var n = 9;
 do {
-  keymap[n.toString()] = n + 48
-} while (--n)
+  keymap[n.toString()] = n + 48;
+} while (--n);
 
-export default keymap
+export default keymap;

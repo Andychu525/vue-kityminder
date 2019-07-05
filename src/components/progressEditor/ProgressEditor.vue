@@ -1,17 +1,19 @@
 <template>
-  <ul class="km-progress tool-group" :disabled="minder.queryCommandState('progress')===-1">
+  <ul class="km-progress tool-group" :disabled="minder.queryCommandState('progress') === -1">
     <li
       class="km-progress-item tool-group-item"
       v-for="p in numList"
       :key="p"
-      @click="minder.queryCommandState('progress')===-1 || minder.execCommand('progress', p)"
+      @click="
+        minder.queryCommandState('progress') === -1 ||
+          minder.execCommand('progress', p)
+      "
       :title="getProgressTitle(p)"
     >
       <div class="km-progress-icon tool-group-icon" :class="`progress-${p}`"></div>
     </li>
   </ul>
 </template>
-
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'

@@ -1,4 +1,4 @@
-var kity = require('kity')
-var kityminder = require('kityminder-core')
+var kity = require("kity");
+var kityminder = require("kityminder-core");
 
-export default window.kityminder.Minder
+export default window.kityminder.Minder;

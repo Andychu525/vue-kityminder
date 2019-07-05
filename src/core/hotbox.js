@@ -1,1 +1,1 @@
-export default window.HotBox
+export default window.HotBox;

@@ -2,7 +2,10 @@
   <div class="bg-color-wrap">
     <span
       class="quick-bg-color"
-      @click="minder.queryCommandState('background') === -1 || minder.execCommand('background', bgColor)"
+      @click="
+        minder.queryCommandState('background') === -1 ||
+          minder.execCommand('background', bgColor)
+      "
       :disabled="minder.queryCommandState('background') === -1"
     ></span>
     <span
@@ -16,7 +19,10 @@
     <span
       class="bg-color-preview"
       ng-style="{ 'background-color': bgColor }"
-      @click="minder.queryCommandState('background') === -1 || minder.execCommand('background', bgColor)"
+      @click="
+        minder.queryCommandState('background') === -1 ||
+          minder.execCommand('background', bgColor)
+      "
       :disabled="minder.queryCommandState('background') === -1"
     ></span>
   </div>

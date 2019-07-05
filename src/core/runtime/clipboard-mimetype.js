@@ -8,14 +8,14 @@ function MimeType() {
   /**
    * 私有变量
    */
-  var SPLITOR = '\uFEFF'
+  var SPLITOR = "\uFEFF";
   var MIMETYPE = {
-    'application/km': '\uFFFF'
-  }
+    "application/km": "\uFFFF"
+  };
   var SIGN = {
-    '\uFEFF': 'SPLITOR',
-    '\uFFFF': 'application/km'
-  }
+    "\uFEFF": "SPLITOR",
+    "\uFFFF": "application/km"
+  };
 
   /**
    * 用于将一段纯文本封装成符合其数据格式的文本
@@ -30,16 +30,16 @@ function MimeType() {
    */
   function process(mimetype, text) {
     if (!this.isPureText(text)) {
-      var _mimetype = this.whichMimeType(text)
+      var _mimetype = this.whichMimeType(text);
       if (!_mimetype) {
-        throw new Error('unknow mimetype!')
+        throw new Error("unknow mimetype!");
       }
-      text = this.getPureText(text)
+      text = this.getPureText(text);
     }
     if (mimetype === false) {
-      return text
+      return text;
     }
-    return mimetype + SPLITOR + text
+    return mimetype + SPLITOR + text;
   }
 
   /**
@@ -50,14 +50,14 @@ function MimeType() {
    */
   this.registMimeTypeProtocol = function(type, sign) {
     if (sign && SIGN[sign]) {
-      throw new Error('sing has registed!')
+      throw new Error("sing has registed!");
     }
     if (type && !!MIMETYPE[type]) {
-      throw new Error('mimetype has registed!')
+      throw new Error("mimetype has registed!");
     }
-    SIGN[sign] = type
-    MIMETYPE[type] = sign
-  }
+    SIGN[sign] = type;
+    MIMETYPE[type] = sign;
+  };
 
   /**
    * 获取已注册数据类型的协议
@@ -74,49 +74,49 @@ function MimeType() {
    *
    */
   this.getMimeTypeProtocol = function(type, text) {
-    var mimetype = MIMETYPE[type] || false
+    var mimetype = MIMETYPE[type] || false;
 
     if (text === undefined) {
-      return process.bind(this, mimetype)
+      return process.bind(this, mimetype);
     }
 
-    return process(mimetype, text)
-  }
+    return process(mimetype, text);
+  };
 
   this.getSpitor = function() {
-    return SPLITOR
-  }
+    return SPLITOR;
+  };
 
   this.getMimeType = function(sign) {
     if (sign !== undefined) {
-      return SIGN[sign] || null
+      return SIGN[sign] || null;
     }
-    return MIMETYPE
-  }
+    return MIMETYPE;
+  };
 }
 
 MimeType.prototype.isPureText = function(text) {
-  return !~text.indexOf(this.getSpitor())
-}
+  return !~text.indexOf(this.getSpitor());
+};
 
 MimeType.prototype.getPureText = function(text) {
   if (this.isPureText(text)) {
-    return text
+    return text;
   }
-  return text.split(this.getSpitor())[1]
-}
+  return text.split(this.getSpitor())[1];
+};
 
 MimeType.prototype.whichMimeType = function(text) {
   if (this.isPureText(text)) {
-    return null
+    return null;
   }
-  return this.getMimeType(text.split(this.getSpitor())[0])
-}
+  return this.getMimeType(text.split(this.getSpitor())[0]);
+};
 
 function MimeTypeRuntime() {
   if (this.minder.supportClipboardEvent && !kity.Browser.gecko) {
-    this.MimeType = new MimeType()
+    this.MimeType = new MimeType();
   }
 }
 
-export default MimeTypeRuntime
+export default MimeTypeRuntime;

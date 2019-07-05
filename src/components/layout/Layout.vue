@@ -1,7 +1,10 @@
 <template>
   <div class="readjust-layout">
     <a
-      @click="minder.queryCommandState('resetlayout') === -1 || minder.execCommand('resetlayout')"
+      @click="
+        minder.queryCommandState('resetlayout') === -1 ||
+          minder.execCommand('resetlayout')
+      "
       class="btn-wrap"
       :disabled="minder.queryCommandState('resetlayout') === -1"
     >
@@ -10,7 +13,6 @@
     </a>
   </div>
 </template>
-
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
